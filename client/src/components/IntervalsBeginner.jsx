@@ -13,6 +13,10 @@ const IntervalsBeginner = (props) => {
     const [p5] = useSound(perfectFifth);
     const [p8] = useSound(perfectEighth);
 
+    const [filePath, setFilePath] = useState('')
+
+    const [play] = useSound(filePath)
+
     let possibleSounds = [p4, p5, p8]
 
     let [interval, setInterval] = useState({})
@@ -28,12 +32,15 @@ const IntervalsBeginner = (props) => {
 
     let userAnswer = ""
     let correctAnswer = ""
+    let [previousIntervalName, setPreviousIntervalName] = useState("")
+
     const [currentInterval, setCurrentInterval] = useState('');
 
 
 
     const handleClick = (e) => {
         e.preventDefault();
+        setPreviousIntervalName(interval.name)
         setTotalGuesses(totalGuesses + 1)
         userAnswer = e.target.value;
         correctAnswer = currentInterval
@@ -41,7 +48,7 @@ const IntervalsBeginner = (props) => {
         console.log({ userAnswer, correctAnswer })
         if (userAnswer === correctAnswer) {
             setCorrectGuesses(correctGuesses + 1)
-            setAnswerMessage(`Correct! That was a  ${currentInterval}`)
+            setAnswerMessage(`Correct! That was a  ${previousIntervalName}`)
             setCurrentScoreMessage(`Total score thus far is ${correctGuesses}/${totalGuesses}`)
             setAnswered(!answered)
         }
@@ -57,12 +64,12 @@ const IntervalsBeginner = (props) => {
 
     const playSound = () => {
         let randomChoice = (Math.floor(Math.random() * 3))
-        if (randomChoice === 0) {
+        if (interval.name == "Perfect 4th") {
             p4()
             setCurrentInterval("p4")
             correctAnswer = "p4"
         }
-        else if (randomChoice === 1) {
+        else if (interval.name == "Perfect 5th") {
             p5()
             setCurrentInterval("p5")
             correctAnswer = "p5"
@@ -75,20 +82,26 @@ const IntervalsBeginner = (props) => {
 
         }
         console.log({ correctAnswer })
+        
     }
 
-    // const playSound = (req, res) => {
-    //     axios.get(`http://localhost:8000/api/intervals/random`)
-    //         .then(res => {
-    //             console.log(res.data.results[0])
-    //             setInterval(res.data.results[0])
-    //         })
-    //         .catch(err => console.log(err))
+    const getInterval = (req, res) => {
+        axios.get(`http://localhost:8000/api/intervals/random`)
+            .then(res => {
+                // console.log(res.data.results[0])
+                setInterval(res.data.results[0])
+                console.log(interval)
+                setFilePath(interval.soundFilePath)
+            })
+            .catch(err => console.log(err))
             
-    // }
+            
+    }
 
     useEffect(() => {
+        getInterval()
         playSound()
+
     }, [answered]);
 
     return (
