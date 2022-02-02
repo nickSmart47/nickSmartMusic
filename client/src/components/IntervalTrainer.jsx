@@ -9,7 +9,7 @@ const IntervalTrainer = (props) => {
             <p>Please click one of the colored buttons below to choose a difficulty level</p>
 
             <div className="d-flex justify-content-center">
-                <div className>
+                <div>
                     <ul className="list-group">
                         <Link to ="/intervals/beginner" className="btn btn-success">Beginner</Link>
                         <li className="list-group-item">Perfect Intervals only</li>
@@ -18,7 +18,7 @@ const IntervalTrainer = (props) => {
                 </div>
                 <div>
                     <ul className="list-group">
-                        <button className="btn btn-warning">Intermediate</button>
+                        <Link to ="/intervals/intermediate" className="btn btn-warning">Intermediate</Link>
                         <li className="list-group-item">Perfect Intervals plus thirds and sixths</li>
                         <li className="list-group-item">Perfect 4ths, 5ths, and 8ths</li>
                         <li className="list-group-item">Major and Minor 3rds and 6ths</li>

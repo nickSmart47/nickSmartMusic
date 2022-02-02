@@ -27,25 +27,39 @@ module.exports.getInterval = (req, res) => {
         .catch(err => res.json(err))
 }
 
-module.exports.getRandomInterval = (req, res) => {
-    Interval.aggregate([{ $sample: { size: 1 }}])
+module.exports.getRandomIntervalEasy = (req, res) => {
+    Interval.aggregate([
+        {$match: {quality: 'P'}},
+        { $sample: { size: 1 }}])
         .then(randomInterval => {
-            res.json({results: randomInterval})
+            res.json({ results: randomInterval })
         })
-        .catch(err => res.json({message: "Something went wrong", error: err }))  
+        .catch(err => res.json({ message: "Something went wrong", error: err }))
+}
+
+module.exports.getRandomIntervalIntermediate = (req, res) => {
+    Interval.aggregate([
+        { $sample: { size: 1 }},
+    ])
+        .then(randomInterval => {
+            res.json({ results: randomInterval })
+        })
+        .catch(err => res.json({ message: "Something went wrong", error: err }))
 }
 
 module.exports.updateInterval = (req, res) => {
     Interval.findOneAndUpdate({ _id: req.params.id },
         req.body,
-        { new: true, runValidators: true}
+        { new: true, runValidators: true }
     )
         .then(updatedInterval => {
             // console.log(res.json)
             res.json(updatedInterval)
         })
-        .catch(err => {console.log(err)
-            res.json(err)})
+        .catch(err => {
+            console.log(err)
+            res.json(err)
+        })
 }
 module.exports.deleteInterval = (req, res) => {
     Interval.deleteOne({ _id: req.params.id })

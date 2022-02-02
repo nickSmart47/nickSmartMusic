@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import IntervalTrainer from './components/IntervalTrainer';
 import IntervalsBeginner from './components/IntervalsBeginner';
+import IntervalsIntermediate from './components/IntervalsIntermediate';
 
 
 function App() {
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route exact path="/intervals/beginner">
           <IntervalsBeginner />
+        </Route>
+        <Route exact path="/intervals/intermediate">
+          <IntervalsIntermediate />
         </Route>
       </div>
     </BrowserRouter>
