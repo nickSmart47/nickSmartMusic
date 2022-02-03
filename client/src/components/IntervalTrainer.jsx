@@ -67,7 +67,7 @@ const IntervalTrainer = (props) => {
         if (userAnswer === correctAnswer) {
             setCorrectGuesses(correctGuesses + 1)
             setAnswerMessage(`Correct! That was a  ${previousIntervalName}`)
-            let scoreMessage = `Total score thus far is ${totalGuesses}/${correctGuesses}`
+            let scoreMessage = `Total score thus far is ${correctGuesses}/${totalGuesses}`
             setCurrentScoreMessage(scoreMessage)
             setAnswered(!answered)
         }
@@ -278,14 +278,12 @@ const IntervalTrainer = (props) => {
     useEffect(() => {
         getInterval()
         playSound()
-        console.log("Difficulty: " + props.difficulty)
+        // console.log("Difficulty: " + props.difficulty)
 
     }, [answered, clicked]);
 
     return (
         <>
-            <br />
-            <br />
             <h1>Interval Trainer {props.difficulty.charAt(0).toUpperCase() + props.difficulty.slice(1)}</h1>
             <br />
             <p>Listen to the sound you hear and choose the interval name that matches below</p>
