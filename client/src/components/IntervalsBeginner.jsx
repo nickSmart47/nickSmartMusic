@@ -45,13 +45,33 @@ const IntervalsBeginner = (props) => {
             setAnswered(!answered)
         }
         else {
-            setAnswerMessage("Incorrect.")
+            setAnswerMessage(`Incorrect. It was a ${previousIntervalName}`)
             setAnswered(!answered)
             setCurrentScoreMessage(`Total score thus far is ${correctGuesses}/${totalGuesses}`)
 
         }
     }
 
+    const replaySound = () => {
+        // console.log(previousIntervalName)
+        if (previousIntervalName === "Perfect 4th") {
+            p4()
+            setCurrentInterval("p4")
+            correctAnswer = "p4"
+        }
+        else if (previousIntervalName === "Perfect 5th") {
+            p5()
+            setCurrentInterval("p5")
+            correctAnswer = "p5"
+
+        }
+        else {
+            p8()
+            setCurrentInterval("p8")
+            correctAnswer = "p8"
+
+        }
+    }
 
     const playSound = () => {
         // let randomChoice = (Math.floor(Math.random() * 3))
@@ -112,7 +132,9 @@ const IntervalsBeginner = (props) => {
                 </ul>
             </div>
 
-            <button onClick={playSound} className="btn btn-primary mt-3">Play sound</button>
+            <button onClick={replaySound} className="btn btn-warning m-3">Replay Previous Interval</button>
+
+            <button onClick={playSound} className="btn btn-primary m-3">Play New Interval</button>
 
             <p className='mt-3'>{answerMessage}</p>
             <p className='mt-3'>{currentScoreMessage}</p>

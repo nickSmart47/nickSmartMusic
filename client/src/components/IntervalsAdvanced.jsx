@@ -70,13 +70,83 @@ const IntervalsAdvanced = (props) => {
             setAnswered(!answered)
         }
         else {
-            setAnswerMessage("Incorrect.")
+            setAnswerMessage(`Incorrect. It was a ${previousIntervalName}`)
             setCurrentScoreMessage(`Total score thus far is ${correctGuesses}/${totalGuesses}`)
             setAnswered(!answered)
 
         }
     }
 
+
+    const replaySound = () => {
+        // console.log(previousIntervalName)
+        if (previousIntervalName === "Perfect 4th") {
+            p4()
+            setCurrentInterval("p4")
+            correctAnswer = "p4"
+        }
+        else if (previousIntervalName === "Perfect 5th") {
+            p5()
+            setCurrentInterval("p5")
+            correctAnswer = "p5"
+
+        }
+        else if (previousIntervalName === "Perfect 8th") {
+            p8()
+            setCurrentInterval("p8")
+            correctAnswer = "p8"
+
+        }
+        else if (previousIntervalName === "Minor 3rd") {
+            m3()
+            setCurrentInterval("m3")
+            correctAnswer = "m3"
+
+        }
+        else if (previousIntervalName === "Major 3rd") {
+            M3()
+            setCurrentInterval("M3")
+            correctAnswer = "M3"
+
+        }
+        else if (previousIntervalName === "Minor 6th") {
+            m6()
+            setCurrentInterval("m6")
+            correctAnswer = "m6"
+
+        }
+        else if (previousIntervalName === "Major 6th") {
+            M6()
+            setCurrentInterval("M6")
+            correctAnswer = "M6"
+
+        }
+        else if (previousIntervalName === "Minor 2nd") {
+            m2()
+            setCurrentInterval("m2")
+            correctAnswer = "m2"
+        }
+        else if (previousIntervalName === "Major 2nd") {
+            M2()
+            setCurrentInterval("M2")
+            correctAnswer = "M2"
+        }
+        else if (previousIntervalName === "Minor 7th") {
+            m7()
+            setCurrentInterval("m7")
+            correctAnswer = "m7"
+        }
+        else if (previousIntervalName === "Major 7th") {
+            M7()
+            setCurrentInterval("M7")
+            correctAnswer = "M7"
+        }
+        else if (previousIntervalName === "Augmented 4th/Diminished 5th") {
+            a4d5()
+            setCurrentInterval("A4/d5")
+            correctAnswer = "a4d5"
+        }
+    }
 
     const playSound = () => {
         // let randomChoice = (Math.floor(Math.random() * 3))
@@ -138,7 +208,7 @@ const IntervalsAdvanced = (props) => {
         else if (interval.name === "Augmented 4th/Diminished 5th") {
             a4d5()
             setCurrentInterval("A4/d5")
-            correctAnswer = "A4/d5"
+            correctAnswer = "a4d5"
         }
         setPreviousIntervalName(interval.name)
 
@@ -217,7 +287,9 @@ const IntervalsAdvanced = (props) => {
                 </div>
             </div>
 
-            <button onClick={playSound} className="btn btn-primary mt-3">Play sound</button>
+            <button onClick={replaySound} className="btn btn-warning m-3">Replay Previous Interval</button>
+
+            <button onClick={playSound} className="btn btn-primary m-3">Play New Interval</button>
 
             <p className='mt-3'>{answerMessage}</p>
             <p className='mt-3'>{currentScoreMessage}</p>
