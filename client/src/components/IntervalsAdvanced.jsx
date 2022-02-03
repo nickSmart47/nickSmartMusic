@@ -143,7 +143,7 @@ const IntervalsAdvanced = (props) => {
         }
         else if (previousIntervalName === "Augmented 4th/Diminished 5th") {
             a4d5()
-            setCurrentInterval("A4/d5")
+            setCurrentInterval("a4d5")
             correctAnswer = "a4d5"
         }
     }
