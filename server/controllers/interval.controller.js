@@ -27,7 +27,7 @@ module.exports.getInterval = (req, res) => {
         .catch(err => res.json(err))
 }
 
-module.exports.getRandomIntervalEasy = (req, res) => {
+module.exports.getRandomIntervalBeginner = (req, res) => {
     Interval.aggregate([
         { $match: { quality: 'P' } },
         { $sample: { size: 1 } }])

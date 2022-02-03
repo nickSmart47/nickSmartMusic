@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+*{
+  background-color: #EAE8FF;
+  color: #211103;
+}
+
+.btn-light:hover{
+  background-color: #60695C;
+  color: #F2ED6F;
+}
+
+.btn-light{
+  color: #6A041D;
+}

@@ -1,10 +1,10 @@
 import './App.css';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import IntervalTrainer from './components/IntervalTrainer';
+import Intervals from './components/Intervals';
 import IntervalsBeginner from './components/IntervalsBeginner';
 import IntervalsIntermediate from './components/IntervalsIntermediate';
-import IntervalsAdvanced from './components/IntervalsAdvanced';
+import IntervalTrainer from './components/IntervalTrainer';
 
 
 function App() {
@@ -16,16 +16,16 @@ function App() {
           <h1>Welcome!</h1>
         </Route>
         <Route exact path="/intervals">
-          <IntervalTrainer />
+          <Intervals />
         </Route>
         <Route exact path="/intervals/beginner">
-          <IntervalsBeginner />
+          <IntervalTrainer difficulty={"beginner"} />
         </Route>
         <Route exact path="/intervals/intermediate">
-          <IntervalsIntermediate />
+          <IntervalTrainer difficulty={"intermediate"} />
         </Route>
         <Route exact path="/intervals/advanced">
-          <IntervalsAdvanced />
+          <IntervalTrainer difficulty={"advanced"} />
         </Route>
       </div>
     </BrowserRouter>
