@@ -95,7 +95,7 @@ const IntervalsIntermediate = (props) => {
             correctAnswer = "M3"
 
         }
-        else if (interval.name === "minor 6th") {
+        else if (interval.name === "Minor 6th") {
             m6()
             setCurrentInterval("m6")
             correctAnswer = "m6"
@@ -120,7 +120,7 @@ const IntervalsIntermediate = (props) => {
                 setInterval(res.data.results[0])
                 setPreviousIntervalName(interval.name)
                 console.log(interval)
-                if (previousIntervalName == undefined) {
+                if (previousIntervalName === undefined) {
                     correctAnswer = previousIntervalName
                 }
                 else {

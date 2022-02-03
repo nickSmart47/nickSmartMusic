@@ -26,7 +26,7 @@ const IntervalTrainer = (props) => {
                 </div>
                 <div>
                     <ul className="list-group">
-                        <button className="btn btn-danger">Advanced</button>
+                        <Link to ="/intervals/advanced" className="btn btn-danger">Advanced</Link>
                         <li className="list-group-item">All Intervals!</li>
                         <li className="list-group-item">Perfect 4ths, 5ths, and 8ths</li>
                         <li className="list-group-item">Major and Minor 3rds and 6ths</li>

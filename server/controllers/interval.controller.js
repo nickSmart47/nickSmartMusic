@@ -29,8 +29,8 @@ module.exports.getInterval = (req, res) => {
 
 module.exports.getRandomIntervalEasy = (req, res) => {
     Interval.aggregate([
-        {$match: {quality: 'P'}},
-        { $sample: { size: 1 }}])
+        { $match: { quality: 'P' } },
+        { $sample: { size: 1 } }])
         .then(randomInterval => {
             res.json({ results: randomInterval })
         })
@@ -39,8 +39,24 @@ module.exports.getRandomIntervalEasy = (req, res) => {
 
 module.exports.getRandomIntervalIntermediate = (req, res) => {
     Interval.aggregate([
-        { $sample: { size: 1 }},
+        {
+            $match:
+            {
+                quality: { $in: ['P', 'M', 'm'] },
+                number: { $in: [3, 4, 5, 6, 8] }
+            }
+        },
+        { $sample: { size: 1 } },
     ])
+        .then(randomInterval => {
+            res.json({ results: randomInterval })
+        })
+        .catch(err => res.json({ message: "Something went wrong", error: err }))
+}
+
+module.exports.getRandomIntervalAdvanced = (req, res) => {
+    Interval.aggregate([
+        { $sample: { size: 1 } }])
         .then(randomInterval => {
             res.json({ results: randomInterval })
         })

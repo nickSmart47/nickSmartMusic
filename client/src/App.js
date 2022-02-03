@@ -4,6 +4,7 @@ import Navigation from './components/Navigation';
 import IntervalTrainer from './components/IntervalTrainer';
 import IntervalsBeginner from './components/IntervalsBeginner';
 import IntervalsIntermediate from './components/IntervalsIntermediate';
+import IntervalsAdvanced from './components/IntervalsAdvanced';
 
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route exact path="/intervals/intermediate">
           <IntervalsIntermediate />
+        </Route>
+        <Route exact path="/intervals/advanced">
+          <IntervalsAdvanced />
         </Route>
       </div>
     </BrowserRouter>
